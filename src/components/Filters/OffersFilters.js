@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Checkbox, Row, Col, Space } from "antd";
+import { Checkbox, Row, Col, Space, Slider, Divider } from "antd";
 import { Typography } from "antd";
 
 const OffersFilters = () => {
@@ -24,6 +24,12 @@ const OffersFilters = () => {
           })}
         </Space>
       </Checkbox.Group>
+      <Divider></Divider>
+      <div>
+        {" "}
+        <span>Salary</span>
+        <Slider defaultValue={120} />
+      </div>
     </div>
   );
 };

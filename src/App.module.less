@@ -1,0 +1,41 @@
+:root {
+  --header-color: #021232;
+}
+
+:global {
+  .ant-layout {
+    min-height: 100vh;
+  }
+
+  .ant-layout-content {
+    margin: 2.5rem 5rem 0 5rem;
+    padding: 2.5rem;
+  }
+
+  .ant-layout-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 7rem;
+  }
+  .ant-menu {
+    width: 25rem;
+    background: var(--header-color);
+    border-bottom: none;
+  }
+  .ant-menu-item {
+    color: whitesmoke;
+    font-size: 1.6rem;
+    letter-spacing: 0.5px;
+    background: var(--header-color);
+  }
+  .ant-layout-header,
+  .ant-menu.ant-menu-dark {
+    background: var(--header-color);
+  }
+  .ant-menu-item:hover,
+  .ant-menu-item:active {
+    background-color: rgb(30, 59, 87) !important;
+  }
+}
