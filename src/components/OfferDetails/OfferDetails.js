@@ -1,8 +1,9 @@
 import React from "react";
-import "./OfferDetails.less";
 import { Button, Typography } from "antd";
 import { HeartOutlined } from "@ant-design/icons";
 import { ShareAltOutlined } from "@ant-design/icons";
+import "./OfferDetails.less";
+import "./OfferDetails.module.less";
 
 const OfferDetails = () => {
   const { Title } = Typography;
@@ -41,9 +42,6 @@ const OfferDetails = () => {
           <li> nown printer took a galley </li>
         </ul>
       </div>
-      <Button type="primary" style={{ width: "50%" }}>
-        Apply now!
-      </Button>
     </div>
   );
 };

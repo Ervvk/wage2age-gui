@@ -1,6 +1,4 @@
-:root {
-  --header-color: #021232;
-}
+@import "./helpers/style/mixins.less";
 
 :global {
   .ant-layout {
@@ -10,29 +8,29 @@
   .ant-layout-content {
     margin: 2.5rem 5rem 0 5rem;
     padding: 2.5rem;
+    margin: 0 auto;
   }
 
   .ant-layout-header {
+    .flexSpacing(row);
+
     width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: 7rem;
+    height: 70px;
   }
   .ant-menu {
     width: 25rem;
-    background: var(--header-color);
+    background: var(--color-bg-dark-d);
     border-bottom: none;
   }
   .ant-menu-item {
     color: whitesmoke;
     font-size: 1.6rem;
     letter-spacing: 0.5px;
-    background: var(--header-color);
+    background: var(--color-bg-dark-d);
   }
   .ant-layout-header,
   .ant-menu.ant-menu-dark {
-    background: var(--header-color);
+    background: var(--color-bg-dark-d);
   }
   .ant-menu-item:hover,
   .ant-menu-item:active {

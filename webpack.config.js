@@ -3,12 +3,13 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   mode: "development",
-  entry: path.join(__dirname, "src", "index.js"),
+  entry: path.join(__dirname, "src", "/index.js"),
   devtool: "inline-source-map",
   devServer: {
     static: "./dist",
     hot: true,
     port: 3000,
+    historyApiFallback: true,
   },
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -44,8 +45,21 @@ module.exports = {
                   "link-color": "#1DA57A",
                   "border-radius-base": "2px",
                 },
+                modules: true,
                 javascriptEnabled: true,
               },
+            },
+          },
+        ],
+      },
+      {
+        test: /\.svg$/,
+
+        use: [
+          {
+            loader: "svg-url-loader",
+            options: {
+              limit: 10000,
             },
           },
         ],

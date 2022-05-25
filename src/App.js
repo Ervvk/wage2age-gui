@@ -1,23 +1,28 @@
 import React from "react";
 import { Button, Layout, Space, Menu } from "antd";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import OffersTable from "./routes/offers/OffersTable";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import {
   DollarOutlined,
   EuroOutlined,
   PoweroffOutlined,
 } from "@ant-design/icons";
+
 import "./App.less";
 import "./App.module.less";
 
+import Offers from "./routes/offers/Offers";
+import Offer from "./routes/offerDetails/Offer";
+import Login from "./routes/login/Login";
+
 const App = () => {
+  const navigate = useNavigate();
   const logged = true;
   const routes = (
-    <Router>
-      <Routes>
-        <Route path="/" element={<OffersTable />} />
-      </Routes>
-    </Router>
+    <Routes>
+      <Route path="/" element={<Offers />} />
+      <Route path="login" element={<Login />} />
+      <Route path="offer" element={<Offer />} />
+    </Routes>
   );
 
   const logo = (
@@ -26,6 +31,9 @@ const App = () => {
       <EuroOutlined />
     </div>
   );
+  const handleLogoClick = () => {
+    navigate("/", { replace: true });
+  };
 
   const UserMenu = () => {
     return (
@@ -58,7 +66,7 @@ const App = () => {
   return (
     <Layout className="layout">
       <Header>
-        <div className="logo">
+        <div className="logo" onClick={handleLogoClick}>
           <span style={{ display: "inline-block" }}>{logo}</span>
           WAGE NO AGE
         </div>

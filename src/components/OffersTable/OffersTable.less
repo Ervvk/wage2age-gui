@@ -1,0 +1,90 @@
+.offers-table {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding: 1em;
+  //overflow-y: scroll;
+}
+.icon {
+  width: 5rem;
+  height: 5rem;
+  border: 1px solid grey;
+  border-radius: 5px;
+}
+.row-top-wrapper {
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 1em;
+  font-weight: 600;
+  justify-content: space-between;
+}
+.row-mid-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+.row-low-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.row {
+  background-color: var(--color-bg-bright-b);
+  padding: 2rem;
+  padding-bottom: 1.5rem;
+
+  width: 80rem;
+  height: 18rem;
+  border-radius: 10px;
+  border: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  &:hover {
+    cursor: pointer;
+    border: 1px solid blue;
+    background-color: var(--color-bg-bright);
+    -webkit-box-shadow: 1px 1px 3px 0px rgba(66, 68, 90, 0.2);
+    -moz-box-shadow: 1px 1px 3px 0px rgba(66, 68, 90, 0.2);
+    box-shadow: 1px 1px 3px 0px rgba(66, 68, 90, 0.2);
+  }
+}
+.row-days {
+  color: var(--color-font);
+  opacity: 0.65;
+  padding-bottom: 1.5rem;
+}
+.row-title {
+  display: flex;
+  gap: 1em;
+  min-width: 40%;
+  align-items: center;
+  height: 5rem;
+}
+.row-salary {
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: rgb(15, 15, 99);
+  //padding-bottom: 1rem;
+}
+.tags {
+  display: flex;
+  gap: 0.65rem;
+  margin-top: 0.5rem;
+}
+.tag {
+  color: var(--color-font);
+  font-weight: 500;
+  background-color: rgba(202, 223, 239, 0.355);
+  padding: 0.35rem 1rem;
+  border-radius: 3px;
+  border: 1px solid var(--color-border);
+}
+
+.input-wrap {
+  padding: 2em;
+  display: flex;
+  justify-content: center;
+}
