@@ -5,6 +5,8 @@ import { HeartOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { countDays } from "../../helpers/scripts/calcs";
 import "./OffersTable.less";
+import { HiOutlineBriefcase } from "react-icons/hi";
+
 const OffersTable = ({ dataset }) => {
   const navig = useNavigate();
 
@@ -20,29 +22,14 @@ const OffersTable = ({ dataset }) => {
             <div className="row-top-wrapper">
               <div className="row-title">
                 <div style={{ display: "flex", flexDirection: "column" }}>
-                  <span
-                    style={{
-                      display: "inline-block",
-                      fontSize: "17px",
-                      fontWeight: "500",
-                    }}
-                  >
+                  <span className="row-company">
+                    <HiOutlineBriefcase />
                     {row.companyName}
                   </span>
-                  <span
-                    style={{
-                      display: "inline-block",
-                      fontSize: "21px",
-                      transform: "translateY(-2px)",
-                      letterSpacing: ".5px",
-                    }}
-                  >
-                    {row.positionName}
-                  </span>
+                  <span className="row-position">{row.positionName}</span>
                 </div>
               </div>
               <span className="row-days">
-                {" "}
                 {countDays(row.offerDate)} days ago
               </span>
             </div>
@@ -65,7 +52,6 @@ const OffersTable = ({ dataset }) => {
             </div>
             <div className="row-low-wrapper">
               <div className="row-location">
-                {" "}
                 <EnvironmentOutlined />
                 <span>{` ${row.city}, ${row.country}`}</span>
               </div>

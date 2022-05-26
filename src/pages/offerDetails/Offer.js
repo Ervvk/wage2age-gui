@@ -1,6 +1,6 @@
 import React from "react";
 import OfferDetails from "../../components/OfferDetails/OfferDetails";
-import OfferDetailsSider from "../../components/OfferDetails/OfferDetailsSider";
+import OfferDetailsSider from "../../components/OfferDetails/OfferDetailsSider/OfferDetailsSider";
 import "./Offer.less";
 const Offer = () => {
   return (

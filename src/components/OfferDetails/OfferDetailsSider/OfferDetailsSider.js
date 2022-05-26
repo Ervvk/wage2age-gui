@@ -1,11 +1,10 @@
 import React from "react";
 import { Button } from "antd";
-import "./OfferDetails.less";
-import style from "./OfferDetails.module.less";
+import "./OfferDetailsSider.less";
 
 const OfferDetailsSider = () => {
   return (
-    <div className={style["details-sider"]}>
+    <div className="details-sider">
       OfferDetailsSider
       <Button type="primary" style={{ width: "50%" }}>
         Apply now!

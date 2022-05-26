@@ -10,8 +10,7 @@ const OfferDetails = () => {
   return (
     <div className="details">
       {" "}
-      <i className="icon"></i>
-      <Title level={3}>Senior Floor Cleaner</Title>
+      <h1>Senior Floor Cleaner</h1>
       <span>Brandex</span>
       <div className="job-title">Geneve, Berlin Street 48</div>
       <div className="tags">

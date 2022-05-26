@@ -1,10 +1,12 @@
 import React from "react";
-import { Layout, Space, Menu } from "antd";
+import { useNavigate } from "react-router-dom";
+import { Layout, Space } from "antd";
 import { DollarOutlined, EuroOutlined } from "@ant-design/icons";
-import HeaderNavigation from "./HeaderNavigation";
+
 import "./Header.module.less";
 import "./Header.less";
-import { useNavigate } from "react-router-dom";
+
+import HeaderNavigation from "./HeaderNavigation";
 
 const Header = () => {
   const { Header } = Layout;
@@ -29,10 +31,6 @@ const Header = () => {
       </div>
 
       <Space direction="horizontal">
-        <Menu mode="horizontal">
-          <Menu.Item>Offers</Menu.Item>
-          <Menu.Item>My recruitment</Menu.Item>
-        </Menu>
         <HeaderNavigation />
       </Space>
     </Header>
