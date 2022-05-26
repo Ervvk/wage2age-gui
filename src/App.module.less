@@ -1,5 +1,3 @@
-@import "./helpers/style/mixins.less";
-
 :global {
   .ant-layout {
     min-height: 100vh;
@@ -9,31 +7,5 @@
     margin: 2.5rem 5rem 0 5rem;
     padding: 2.5rem;
     margin: 0 auto;
-  }
-
-  .ant-layout-header {
-    .flexSpacing(row);
-
-    width: 100%;
-    height: 70px;
-  }
-  .ant-menu {
-    width: 25rem;
-    background: var(--color-bg-dark-d);
-    border-bottom: none;
-  }
-  .ant-menu-item {
-    color: whitesmoke;
-    font-size: 1.6rem;
-    letter-spacing: 0.5px;
-    background: var(--color-bg-dark-d);
-  }
-  .ant-layout-header,
-  .ant-menu.ant-menu-dark {
-    background: var(--color-bg-dark-d);
-  }
-  .ant-menu-item:hover,
-  .ant-menu-item:active {
-    background-color: rgb(30, 59, 87) !important;
   }
 }
