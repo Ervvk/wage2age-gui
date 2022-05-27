@@ -13,7 +13,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   const logo = (
-    <div className={{ color: "white", display: "flex" }}>
+    <div className={{ display: "flex" }}>
       <DollarOutlined />
       <EuroOutlined />
     </div>

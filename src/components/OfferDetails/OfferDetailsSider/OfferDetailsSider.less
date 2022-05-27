@@ -1,6 +1,32 @@
+@import "/src/helpers/style/mixins.less";
+h2 {
+}
 .details-sider {
-  width: 20vw;
+  .flexSpacing(column);
+  justify-content: space-evenly;
+  padding: 2rem;
+  width: 40rem;
   height: min-content;
-  max-height: 50vw;
+  min-height: 20rem;
   background-color: var(--color-bg-bright-b);
+}
+.details-sider-contract {
+  font-size: 2rem;
+  & span {
+    display: inline-block;
+    margin-left: 1rem;
+    transform: translateY(-0.35rem);
+  }
+}
+.details-sider-salary {
+  .flexCentering(row);
+  gap: 0.5rem;
+  & span {
+    font-size: 2rem;
+  }
+}
+.details-sider-btn {
+  font-size: 1.75rem;
+  width: 85%;
+  height: 4.5rem;
 }

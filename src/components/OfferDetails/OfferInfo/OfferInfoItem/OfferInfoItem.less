@@ -1,0 +1,28 @@
+@import "/src/helpers/style/mixins.less";
+.offer-info-item {
+  .flexSpacing(row);
+  justify-content: auto;
+  gap: 1rem;
+  //min-width: max-content;
+  width: 24rem;
+  font-size: 1.8rem;
+  padding: 1rem;
+  align-self: center;
+  justify-self: center;
+
+  border: 1px dashed rgb(203, 203, 210);
+  &-val {
+    width: 15rem;
+    display: inline-block;
+  }
+  &-icon {
+    cursor: pointer;
+    height: 5.5rem;
+    width: 5.5rem;
+    font-size: 2.8rem;
+    border-radius: 50%;
+    .flexCentering(column);
+    border: 1px dashed rgb(36, 100, 169);
+    background-color: var(--color-bg-bright);
+  }
+}
