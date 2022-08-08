@@ -2,18 +2,14 @@ import React from "react";
 import { Form, Input, Button, Checkbox } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
-import "./Login.less";
-import "./Login.module.less";
+import "./Register.less";
 
-const LoginForm = () => {
-  const onFinish = (values) => {
-    console.log("Received values of form: ", values);
-  };
-
+const RegisterForm = () => {
+  const onFinish = () => {};
   return (
     <Form
-      name="normal_login"
-      className="login-form"
+      name="normal_register"
+      className="register-form"
       initialValues={{
         remember: true,
       }}
@@ -24,14 +20,14 @@ const LoginForm = () => {
         rules={[
           {
             required: true,
-            message: "Podaj swój login!",
+            message: "Podaj swoje imię!",
           },
         ]}
       >
         <Input
           prefix={<UserOutlined className="site-form-item-icon" />}
           placeholder="Username"
-          className="login-form-input"
+          className="register-form-input"
         />
       </Form.Item>
       <Form.Item
@@ -45,7 +41,7 @@ const LoginForm = () => {
       >
         <Input
           prefix={<LockOutlined />}
-          className="login-form-input"
+          className="register-form-input"
           type="password"
           placeholder="Password"
         />
@@ -57,8 +53,12 @@ const LoginForm = () => {
       </Form.Item>
 
       <Form.Item>
-        <Button type="primary" htmlType="submit" className="login-form-button">
-          Log in
+        <Button
+          type="primary"
+          htmlType="submit"
+          className="register-form-button"
+        >
+          Zaloguj
         </Button>
         Or <Link to="/register">Register now</Link>
       </Form.Item>
@@ -66,4 +66,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default RegisterForm;

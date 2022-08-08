@@ -14,7 +14,7 @@ const App = () => {
     <Layout className="layout">
       <Header></Header>
       <Content>{<Routes />}</Content>
-      <Footer style={{ textAlign: "center" }}></Footer>
+      <Footer></Footer>
     </Layout>
   );
 };

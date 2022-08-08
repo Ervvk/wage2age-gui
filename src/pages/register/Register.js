@@ -1,10 +1,10 @@
 import React from "react";
 import "antd/dist/antd.css";
-import "./Login.less";
-import LoginForm from "./LoginForm";
+import "./Register.less";
+import RegisterForm from "./RegisterForm";
 import loginLogo from "../../assets/graphics/login_logo.svg";
 
-const Login = () => {
+const Register = () => {
   /*
   <div className="login-form-inputs">
   <Input className="login-form-input"></Input>
@@ -12,17 +12,17 @@ const Login = () => {
 </div>
 */
   return (
-    <div className="login">
-      <div className="login-graphic">
+    <div className="register">
+      <div className="register-graphic">
         <img src={loginLogo}></img>
         <span>WAGE NO AGE</span>
       </div>
-      <div className="login-content">
-        <img className="login-logo" alt="WAGE NO AGE" />
-        <LoginForm />
+      <div className="register-content">
+        <img className="register-logo" alt="WAGE NO AGE" />
+        <RegisterForm />
       </div>
     </div>
   );
 };
 
-export default Login;
+export default Register;

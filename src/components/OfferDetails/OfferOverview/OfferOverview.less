@@ -1,0 +1,21 @@
+@import "/src/helpers/style/mixins.less";
+.offer-overview {
+  .flexCentering(row);
+  width: 100%;
+  & ul {
+    width: 100%;
+  }
+}
+.offer-overview-list-item {
+  .flexSpacing(row);
+  justify-content: flex-start;
+  width: 100%;
+  gap: 1rem;
+  list-style: none;
+  font-size: 1.75rem;
+  border-bottom: 1px dashed rgb(151, 151, 151);
+  &-icon {
+    font-size: 2.5rem;
+    color: blue;
+  }
+}

@@ -1,16 +1,22 @@
 import React from "react";
+import { RiTaskLine } from "react-icons/ri";
+import "./OfferOverview.less";
 
-const OfferOverview = () => {
+const OfferOverview = ({ overviewItems }) => {
+  console.log(overviewItems);
   return (
     <div className="offer-overview">
-      <div>
-        <h2>Overview</h2>
-      </div>{" "}
       <ul>
-        <li> nice Lorem type specimen book. It has</li>
-        <li> type specimen book. It has su</li>
-        <li> also the leap into electronic typesetting</li>
-        <li> nown printer took a galley </li>
+        {overviewItems.map((item) => {
+          return (
+            <li className="offer-overview-list-item">
+              <span className="offer-overview-list-item-icon">
+                <RiTaskLine />
+              </span>
+              <span> {item} </span>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

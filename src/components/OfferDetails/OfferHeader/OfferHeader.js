@@ -13,7 +13,7 @@ const OfferHeader = ({ position }) => {
       ></Button>
       <div className="details-header-top">
         <div className="details-header-position">
-          <h1>Tester oprogramowania</h1>
+          <h1>{position}</h1>
         </div>
       </div>
       <div className="details-header-mid">

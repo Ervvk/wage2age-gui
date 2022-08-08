@@ -9,47 +9,47 @@ import { MdNightlight } from "react-icons/md";
 import { FaBusAlt } from "react-icons/fa";
 import { CgTimelapse } from "react-icons/cg";
 import { MdComputer } from "react-icons/md";
-const OfferInfo = () => {
+const OfferInfo = ({ offerInfoData }) => {
   const infoData = [
     {
       name: "Stopień / rodzaj niepełnosprawności",
       icon: <BiHandicap />,
-      value: "fiz, stopień lekki",
+      value: offerInfoData.handicap,
     },
     {
       name: "Wymagane wykształcenie",
       icon: <FaUniversity />,
-      value: "Wykształcenie wyższe",
+      value: offerInfoData.education,
     },
     {
       name: "Obsługa komputera",
       icon: <MdComputer />,
-      value: "W stopniu podstawowym",
+      value: offerInfoData.pcSkill,
     },
     {
       name: "Praca fizyczna",
       icon: <GiBiceps />,
-      value: "Umiarkowane natężenie",
+      value: offerInfoData.physical,
     },
     {
       name: "Wymagane doświadczenie na stanowisku",
       icon: <AiOutlineLineChart />,
-      value: "Początkujący",
+      value: offerInfoData.experience,
     },
     {
       name: "Tryb pracy (dzienny / nocny / mieszany)",
       icon: <MdNightlight />,
-      value: "Tryb dzienny",
+      value: offerInfoData.shifts,
     },
     {
       name: "Dojazd do miejsca pracy",
       icon: <FaBusAlt />,
-      value: "We własnym zakresie",
+      value: offerInfoData.commuting,
     },
     {
       name: "Wymiar etatu",
       icon: <CgTimelapse />,
-      value: "Pełny etat",
+      value: offerInfoData.workTime,
     },
   ];
   return (

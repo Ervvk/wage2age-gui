@@ -1,9 +1,22 @@
-import React from "react";
-import { Button } from "antd";
+import React, { useState } from "react";
+import { Button, Modal } from "antd";
 import "./OfferDetailsSider.less";
-import OfferInfoItem from "../OfferInfo/OfferInfoItem/OfferInfoItem";
 import { IoDocumentTextOutline } from "react-icons/io5";
+import OfferApplyForm from "../../OfferApply/OfferApplyForm";
 const OfferDetailsSider = () => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
   return (
     <div className="details-sider">
       <div className="details-sider-salary">
@@ -17,9 +30,17 @@ const OfferDetailsSider = () => {
         <span>Umowa o pracę</span>
       </div>
 
-      <Button type="primary" className="details-sider-btn">
+      <Button type="primary" onClick={showModal} className="details-sider-btn">
         Aplikuj!
       </Button>
+      <Modal
+        title="Aplikuj"
+        visible={isModalVisible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
+        <OfferApplyForm />
+      </Modal>
     </div>
   );
 };
