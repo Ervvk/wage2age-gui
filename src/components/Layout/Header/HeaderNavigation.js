@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "antd";
-import { PoweroffOutlined } from "@ant-design/icons";
+import { PoweroffOutlined, PlusOutlined } from "@ant-design/icons";
 import { Menu } from "antd";
 import { NavLink, useNavigate } from "react-router-dom";
 
@@ -11,11 +11,18 @@ const HeaderNavigation = () => {
   const navigate = useNavigate();
 
   const handleLogoutBtn = () => {
-    return navigate("/login");
+    navigate("/login");
+  };
+
+  const handleNewOfferBtn = () => {
+    navigate("/offerEdition");
   };
 
   return (
     <div className="header-navigation">
+      <Button onClick={handleNewOfferBtn} icon={<PlusOutlined />}>
+        Nowa oferta
+      </Button>
       <Menu mode="horizontal">
         <Menu.Item key="offers">
           <NavLink to={"/"}>Wszystkie oferty</NavLink>

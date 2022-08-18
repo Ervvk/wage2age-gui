@@ -6,6 +6,7 @@ import Offer from "./offer/Offer";
 import Login from "./login/Login";
 import UserOffers from "./userOffers/UserOffers";
 import OfferEdition from "./offerEdition/OfferEdition";
+import Candidates from "./candidates/Candidates";
 
 const routes = () => {
   return (
@@ -16,6 +17,7 @@ const routes = () => {
       <Route path="offer" element={<Offer />} />
       <Route path="userOffers" element={<UserOffers />} />
       <Route path="offerEdition" element={<OfferEdition />} />
+      <Route path="candidates" element={<Candidates />} />
     </Routes>
   );
 };

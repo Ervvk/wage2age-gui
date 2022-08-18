@@ -15,10 +15,11 @@ const Register = () => {
     <div className="register">
       <div className="register-graphic">
         <img src={loginLogo}></img>
-        <span>WAGE NO AGE</span>
+        <span>Wage No Age</span>
       </div>
       <div className="register-content">
-        <img className="register-logo" alt="WAGE NO AGE" />
+        <span className="register-title">Zarejestruj się</span>
+
         <RegisterForm />
       </div>
     </div>

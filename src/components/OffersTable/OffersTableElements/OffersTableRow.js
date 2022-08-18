@@ -1,18 +1,22 @@
 import React from "react";
 import { Table, Input, Button } from "antd";
 import { EnvironmentOutlined } from "@ant-design/icons";
-import { HeartOutlined } from "@ant-design/icons";
+import { HeartOutlined, UserOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { countDays } from "../../../helpers/utils/calcs";
 import "../OffersTable.less";
 import { HiOutlineBriefcase } from "react-icons/hi";
+import { Link } from "react-router-dom";
 const OffersTableRow = ({ row, idx }) => {
   const navig = useNavigate();
 
   const handleOfferClick = () => {
     navig("/offer", { replace: true, state: { detailsData: row } });
   };
-
+  const handleCandidatesRedirect = (e) => {
+    e.preventDefault(); // Error
+    e.stopPropagation();
+  };
   return (
     <div className="row" key={idx} onClick={handleOfferClick}>
       <div className="row-top-wrapper">
@@ -49,8 +53,14 @@ const OffersTableRow = ({ row, idx }) => {
           <EnvironmentOutlined />
           <span>{` ${row.location.city}, ${row.location.country}`}</span>
         </div>
-        <div>
-          <Button icon={<HeartOutlined />}></Button>
+        <div className="row-candidates">
+          <span>
+            <UserOutlined /> {row.candidatesNumber}
+          </span>
+
+          <Button onClick={handleCandidatesRedirect}>
+            <Link to="/candidates"> Kandydaci</Link>
+          </Button>
         </div>
       </div>
     </div>

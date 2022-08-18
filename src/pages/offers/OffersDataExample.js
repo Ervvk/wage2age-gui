@@ -1,5 +1,6 @@
 export const offersData = [
   {
+    candidatesNumber: 12,
     positionName: "Senior Accountant",
     location: {
       country: "Polska",
@@ -118,6 +119,7 @@ export const offersData = [
     },
   },
   {
+    candidatesNumber: 22,
     positionName: "Senior Java Developer",
     location: {
       country: "Polska",
@@ -177,6 +179,7 @@ export const offersData = [
     },
   },
   {
+    candidatesNumber: 12,
     positionName: "Lektor języka francuskiego",
     location: {
       country: "Polska",
@@ -236,6 +239,7 @@ export const offersData = [
     },
   },
   {
+    candidatesNumber: 12,
     positionName: "Lektor języka francuskiego",
     location: {
       country: "Polska",
