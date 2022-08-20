@@ -4,13 +4,11 @@ import {
   UserOutlined,
   LockOutlined,
   UploadOutlined,
-  MessageOutlined,
   RedEnvelopeOutlined,
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import "./Register.less";
-import TextArea from "antd/lib/input/TextArea";
-
+import { citiesData } from "../../assets/cities";
 const { Option } = Select;
 const RegisterForm = () => {
   const uploadProps = {
@@ -60,114 +58,8 @@ const RegisterForm = () => {
     console.log(values);
   };
 
-  const [userType, setUserType] = useState("candidate");
-  return (
-    <Form
-      name="normal_register"
-      className="register-form"
-      onFinish={onFinish}
-      validateMessages={validateMessages}
-    >
-      <Form.Item name={"cv"}>
-        <Select
-          onChange={onUserTypeChange}
-          className="register-form-input"
-          defaultValue="candidate"
-        >
-          <Option value="employer">Pracodawca</Option>
-          <Option value="candidate">Kandydat</Option>
-        </Select>
-      </Form.Item>
-      <Form.Item name={"cv"}>
-        <Form.Item
-          name="username"
-          rules={[
-            {
-              required: true,
-              message: "Podaj login",
-            },
-          ]}
-        >
-          <Input
-            prefix={<UserOutlined className="site-form-item-icon" />}
-            placeholder="Login"
-            className="register-form-input"
-          />
-        </Form.Item>
-        <Form.Item
-          name="password"
-          rules={[
-            {
-              required: true,
-              message: "Podaj swoje hasło!",
-            },
-          ]}
-        >
-          <Input
-            prefix={<LockOutlined />}
-            className="register-form-input"
-            type="password"
-            placeholder="Hasło"
-          />
-        </Form.Item>
-        <Form.Item
-          name={["email"]}
-          rules={[
-            {
-              type: "email",
-              required: true,
-              message: "Podaj swój email",
-            },
-          ]}
-        >
-          <Input
-            className="register-form-input"
-            prefix={<RedEnvelopeOutlined />}
-            placeholder="Email"
-          />
-        </Form.Item>
-        <Form.Item
-          name={"name"}
-          rules={[
-            {
-              required: true,
-              message: "Podaj swoje imię",
-            },
-          ]}
-        >
-          <Input className="register-form-input" placeholder="Imię" />
-        </Form.Item>
-        <Form.Item
-          name={"surname"}
-          rules={[
-            {
-              required: true,
-              message: "Podaj swoje nazwisko",
-            },
-          ]}
-        >
-          <Input className="register-form-input" placeholder="Nazwisko" />
-        </Form.Item>
-
-        <Form.Item
-          name={["age"]}
-          rules={[
-            {
-              type: "number",
-              min: 40,
-              max: 120,
-              required: true,
-              message: "Podaj prawidłowy wiek (min 40 lat)",
-            },
-          ]}
-        >
-          <InputNumber className="register-form-input" placeholder="Wiek" />
-        </Form.Item>
-
-        <Upload {...uploadProps}>
-          <Button icon={<UploadOutlined />}>Dodaj CV</Button>
-        </Upload>
-      </Form.Item>
+  const formItemsEmployer = (
+    <>
       <Form.Item
         name={"company-name"}
         rules={[
@@ -179,19 +71,65 @@ const RegisterForm = () => {
       >
         <Input className="register-form-input" placeholder="Nazwa firmy" />
       </Form.Item>
+
       <Form.Item
-        name={"company-location"}
+        name="voivodeship"
         rules={[
           {
             required: true,
-            message: "Podaj adres głównej siedziby firmy",
+            message: "Wybierz województwo",
           },
         ]}
       >
-        <Input
-          className="register-form-input"
-          placeholder="Adres siedziby firmy"
-        />
+        <Select placeholder="Województwo" className="register-form-input">
+          {citiesData.map((city, idx) => {
+            return (
+              <Option key={idx} value={city.name}>
+                {city.name}
+              </Option>
+            );
+          })}
+        </Select>
+        {/*
+        <CitySearchInput inputWidth="40rem" inputHeight="4rem" />*/}
+      </Form.Item>
+      <Form.Item
+        name="city"
+        rules={[
+          {
+            required: true,
+            message: "Podaj nazwę miasta",
+          },
+        ]}
+      >
+        <Input placeholder="Miasto" className="register-form-input" />
+      </Form.Item>
+      <Form.Item
+        name="street"
+        rules={[
+          {
+            required: true,
+            message: "Podaj adres siedziby firmy",
+          },
+        ]}
+      >
+        <Input placeholder="Ulica" className="register-form-input" />
+      </Form.Item>
+    </>
+  );
+  const formItemsCandidate = (
+    <>
+      {" "}
+      <Form.Item
+        name={"name"}
+        rules={[
+          {
+            required: true,
+            message: "Podaj swoje imię",
+          },
+        ]}
+      >
+        <Input className="register-form-input" placeholder="Imię" />
       </Form.Item>
       <Form.Item
         name={"surname"}
@@ -202,8 +140,100 @@ const RegisterForm = () => {
           },
         ]}
       >
-        <TextArea className="register-form-input" placeholder="Info o firmie" />
+        <Input className="register-form-input" placeholder="Nazwisko" />
       </Form.Item>
+      <Form.Item
+        name={["age"]}
+        rules={[
+          {
+            type: "number",
+            min: 40,
+            max: 120,
+            required: true,
+            message: "Podaj prawidłowy wiek (min 40 lat)",
+          },
+        ]}
+      >
+        <InputNumber className="register-form-input" placeholder="Wiek" />
+      </Form.Item>
+      <Form.Item name={"cv"}>
+        <Upload {...uploadProps}>
+          <Button icon={<UploadOutlined />}>Dodaj CV</Button>
+        </Upload>
+      </Form.Item>
+    </>
+  );
+
+  const [userType, setUserType] = useState("candidate");
+
+  return (
+    <Form
+      name="normal_register"
+      className="register-form"
+      onFinish={onFinish}
+      validateMessages={validateMessages}
+    >
+      <Form.Item name={"userType"}>
+        <Select
+          onChange={onUserTypeChange}
+          className="register-form-input"
+          defaultValue="candidate"
+        >
+          <Option value="employer">Pracodawca</Option>
+          <Option value="candidate">Kandydat</Option>
+        </Select>
+      </Form.Item>
+
+      <Form.Item
+        name="username"
+        rules={[
+          {
+            required: true,
+            message: "Podaj login",
+          },
+        ]}
+      >
+        <Input
+          prefix={<UserOutlined className="site-form-item-icon" />}
+          placeholder="Login"
+          className="register-form-input"
+        />
+      </Form.Item>
+      <Form.Item
+        name="password"
+        rules={[
+          {
+            required: true,
+            message: "Podaj swoje hasło!",
+          },
+        ]}
+      >
+        <Input
+          prefix={<LockOutlined />}
+          className="register-form-input"
+          type="password"
+          placeholder="Hasło"
+        />
+      </Form.Item>
+      <Form.Item
+        name={["email"]}
+        rules={[
+          {
+            type: "email",
+            required: true,
+            message: "Podaj swój email",
+          },
+        ]}
+      >
+        <Input
+          className="register-form-input"
+          prefix={<RedEnvelopeOutlined />}
+          placeholder="Email"
+        />
+      </Form.Item>
+      {userType === "employer" && formItemsEmployer}
+      {userType === "candidate" && formItemsCandidate}
+
       <Form.Item>
         <Button
           type="primary"

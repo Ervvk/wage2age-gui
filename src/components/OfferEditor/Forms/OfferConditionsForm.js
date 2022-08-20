@@ -1,17 +1,11 @@
 import React from "react";
 import { Form, Input, Select, Button, InputNumber } from "antd";
-import { citiesData } from "../../../assets/cities";
-import CitySearchInput from "../../OfferSearch/CitySearchInput/CitySearchInput";
+import { selectOptions } from "../../../assets/offersOptions";
 import "../OfferEditor.less";
-
-const selectOptions = {
-  contract: ["Umowa o pracę", "Umowa o dzieło", "Umowa zlecenie", "B2B"],
-};
 
 const OfferConditionsForm = ({ navigSteps }) => {
   const onFinish = (values) => {
-    console.log("elo");
-    const resObj = { ...values, country: "Polska" };
+    const resObj = { ...values };
     console.log(resObj);
     navigSteps.nextStep();
   };
@@ -21,17 +15,6 @@ const OfferConditionsForm = ({ navigSteps }) => {
   };
   return (
     <Form onFinish={onFinish}>
-      <Form.Item
-        name="company"
-        rules={[
-          {
-            required: false,
-            message: "Podaj nazwę firmy",
-          },
-        ]}
-      >
-        <Input placeholder="Nazwa firmy" className="offer-edition-form-input" />
-      </Form.Item>
       <Form.Item
         name="positionName"
         rules={[
@@ -46,59 +29,7 @@ const OfferConditionsForm = ({ navigSteps }) => {
           className="offer-edition-form-input"
         />
       </Form.Item>
-      <Form.Item name="country">
-        <Input
-          placeholder="Kraj"
-          value="Polska"
-          defaultValue="Polska"
-          disabled
-          className="offer-edition-form-input"
-        />
-      </Form.Item>
 
-      <Form.Item
-        name="voivodeship"
-        rules={[
-          {
-            required: false,
-            message: "Podaj województwo",
-          },
-        ]}
-      >
-        <Select placeholder="Województwo" className="offer-edition-form-input">
-          {citiesData.map((city, idx) => {
-            return (
-              <Option key={idx} value={city.name}>
-                {city.name}
-              </Option>
-            );
-          })}
-        </Select>
-        {/*
-        <CitySearchInput inputWidth="40rem" inputHeight="4rem" />*/}
-      </Form.Item>
-      <Form.Item
-        name="city"
-        rules={[
-          {
-            required: false,
-            message: "Podaj nazwę miasta",
-          },
-        ]}
-      >
-        <Input placeholder="Miasto" className="offer-edition-form-input" />
-      </Form.Item>
-      <Form.Item
-        name="street"
-        rules={[
-          {
-            required: false,
-            message: "Podaj adres firmy",
-          },
-        ]}
-      >
-        <Input placeholder="Ulica" className="offer-edition-form-input" />
-      </Form.Item>
       <Form.Item
         name="contract"
         rules={[
@@ -111,6 +42,77 @@ const OfferConditionsForm = ({ navigSteps }) => {
         <Select placeholder="Rodzaj umowy" className="offer-edition-form-input">
           {selectOptions.contract.map((value, idx) => (
             <Option key={`contract-${idx}`}>{value}</Option>
+          ))}
+        </Select>
+      </Form.Item>
+      <Form.Item
+        name="workTime"
+        rules={[
+          {
+            required: false,
+            message: "Wybierz jedną z opcji!",
+          },
+        ]}
+      >
+        <Select placeholder="Wymiar etatu" className="offer-edition-form-input">
+          {selectOptions.workTime.map((value, idx) => (
+            <Option key={`workTime-${idx}`} value={value}>
+              {value}
+            </Option>
+          ))}
+        </Select>
+      </Form.Item>
+      <Form.Item
+        name="shifts"
+        rules={[
+          {
+            required: false,
+            message: "Wybierz jedną z opcji!",
+          },
+        ]}
+      >
+        <Select placeholder="Typ zmian" className="offer-edition-form-input">
+          {selectOptions.shifts.map((value, idx) => (
+            <Option key={`shifts-${idx}`} value={value}>
+              {value}
+            </Option>
+          ))}
+        </Select>
+      </Form.Item>
+      <Form.Item
+        name="leave"
+        rules={[
+          {
+            required: false,
+            message: "Wybierz jedną z opcji!",
+          },
+        ]}
+      >
+        <Select placeholder="Urlop" className="offer-edition-form-input">
+          {selectOptions.leave.map((value, idx) => (
+            <Option key={`leave-${idx}`} value={value}>
+              {value}
+            </Option>
+          ))}
+        </Select>
+      </Form.Item>
+      <Form.Item
+        name="leave"
+        rules={[
+          {
+            required: false,
+            message: "Wybierz jedną z opcji!",
+          },
+        ]}
+      >
+        <Select
+          placeholder="Miejsce pracy"
+          className="offer-edition-form-input"
+        >
+          {selectOptions.workplace.map((value, idx) => (
+            <Option key={`workplace-${idx}`} value={value}>
+              {value}
+            </Option>
           ))}
         </Select>
       </Form.Item>

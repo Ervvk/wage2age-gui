@@ -8,12 +8,14 @@ import "../OffersTable.less";
 import { HiOutlineBriefcase } from "react-icons/hi";
 import { Link } from "react-router-dom";
 const OffersTableRow = ({ row, idx }) => {
+  const tags = [row.info.workplace, row.info.experience];
   const navig = useNavigate();
 
   const handleOfferClick = () => {
     navig("/offer", { replace: true, state: { detailsData: row } });
   };
   const handleCandidatesRedirect = (e) => {
+    navig("/candidates", { replace: true });
     e.preventDefault(); // Error
     e.stopPropagation();
   };
@@ -33,7 +35,7 @@ const OffersTableRow = ({ row, idx }) => {
       </div>
       <div className="row-mid-wrapper">
         <div className="tags">
-          {row.tags?.map((tag, idx) => (
+          {tags?.map((tag, idx) => (
             <div key={idx} className="tag">
               {tag}
             </div>
@@ -41,11 +43,7 @@ const OffersTableRow = ({ row, idx }) => {
         </div>
 
         <div className="row-salary">
-          <span>
-            {row.salary.value[0] === row.salary.value[1]
-              ? `${row.salary.value[0]} pln/h`
-              : `${row.salary.value[0]} - ${row.salary.value[1]} pln/h`}
-          </span>
+          <span>{row.salary.value} pln/h</span>
         </div>
       </div>
       <div className="row-low-wrapper">
@@ -54,12 +52,8 @@ const OffersTableRow = ({ row, idx }) => {
           <span>{` ${row.location.city}, ${row.location.country}`}</span>
         </div>
         <div className="row-candidates">
-          <span>
-            <UserOutlined /> {row.candidatesNumber}
-          </span>
-
-          <Button onClick={handleCandidatesRedirect}>
-            <Link to="/candidates"> Kandydaci</Link>
+          <Button icon={<UserOutlined />} onClick={handleCandidatesRedirect}>
+            Kandydaci
           </Button>
         </div>
       </div>
