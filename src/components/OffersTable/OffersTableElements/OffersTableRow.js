@@ -1,21 +1,23 @@
-import React from "react";
-import { Table, Input, Button } from "antd";
+import React, { useContext } from "react";
+import { Button } from "antd";
 import { EnvironmentOutlined } from "@ant-design/icons";
-import { HeartOutlined, UserOutlined } from "@ant-design/icons";
+import { UserOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
-import { countDays } from "../../../helpers/utils/calcs";
+
 import "../OffersTable.less";
 import { HiOutlineBriefcase } from "react-icons/hi";
-import { Link } from "react-router-dom";
+import { AuthContext } from "../../../state/authContext";
+
 const OffersTableRow = ({ row, idx }) => {
-  const tags = [row.info.workplace, row.info.experience];
+  const authCtx = useContext(AuthContext);
+  const tags = [row.Workplace, row.Experience];
   const navig = useNavigate();
 
   const handleOfferClick = () => {
-    navig("/offer", { replace: true, state: { detailsData: row } });
+    navig(`/offer/${row.OfferID}`, { replace: true });
   };
   const handleCandidatesRedirect = (e) => {
-    navig("/candidates", { replace: true });
+    navig(`/candidates/${row.OfferID}`, { replace: true });
     e.preventDefault(); // Error
     e.stopPropagation();
   };
@@ -26,12 +28,14 @@ const OffersTableRow = ({ row, idx }) => {
           <div style={{ display: "flex", flexDirection: "column" }}>
             <span className="row-company">
               <HiOutlineBriefcase />
-              {row.employerName}
+              {row.CompanyName}
             </span>
-            <span className="row-position">{row.positionName}</span>
+            <span className="row-position">{row.PositionName}</span>
           </div>
         </div>
-        <span className="row-days">{countDays(row.startDate)} days ago</span>
+        <span className="row-days">
+          {new Date(row.StartDate).toLocaleDateString()}{" "}
+        </span>
       </div>
       <div className="row-mid-wrapper">
         <div className="tags">
@@ -43,19 +47,21 @@ const OffersTableRow = ({ row, idx }) => {
         </div>
 
         <div className="row-salary">
-          <span>{row.salary.value} pln/h</span>
+          <span>{row.Salary} pln/h</span>
         </div>
       </div>
       <div className="row-low-wrapper">
         <div className="row-location">
           <EnvironmentOutlined />
-          <span>{` ${row.location.city}, ${row.location.country}`}</span>
+          <span>{` ${row.City}, Polska`}</span>
         </div>
-        <div className="row-candidates">
-          <Button icon={<UserOutlined />} onClick={handleCandidatesRedirect}>
-            Kandydaci
-          </Button>
-        </div>
+        {authCtx.loggedUser.UserType === "Employer" && (
+          <div className="row-candidates">
+            <Button icon={<UserOutlined />} onClick={handleCandidatesRedirect}>
+              Kandydaci
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );

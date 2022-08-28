@@ -3,17 +3,18 @@
   .flexSpacing(row);
   justify-content: auto;
   gap: 1rem;
-  //min-width: max-content;
-  width: 24rem;
   font-size: 1.8rem;
   padding: 1rem;
   align-self: center;
   justify-self: center;
-
   border: 1px dashed rgb(203, 203, 210);
   &-val {
+    cursor: pointer;
     width: 15rem;
     display: inline-block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
   &-icon {
     cursor: pointer;

@@ -7,19 +7,16 @@ const OfferConditionsForm = ({ navigSteps }) => {
   const onFinish = (values) => {
     const resObj = { ...values };
     console.log(resObj);
-    navigSteps.nextStep();
+    navigSteps.nextStep(values);
   };
-  const handleFinishBtn = () => {};
-  const handleBackBtn = () => {
-    navigSteps.prevStep();
-  };
+
   return (
     <Form onFinish={onFinish}>
       <Form.Item
-        name="positionName"
+        name="PositionName"
         rules={[
           {
-            required: false,
+            required: true,
             message: "Podaj nazwę pozycji!",
           },
         ]}
@@ -31,25 +28,27 @@ const OfferConditionsForm = ({ navigSteps }) => {
       </Form.Item>
 
       <Form.Item
-        name="contract"
+        name="Contract"
         rules={[
           {
-            required: false,
+            required: true,
             message: "Wybierz preferowany rodzaj umowy",
           },
         ]}
       >
         <Select placeholder="Rodzaj umowy" className="offer-edition-form-input">
           {selectOptions.contract.map((value, idx) => (
-            <Option key={`contract-${idx}`}>{value}</Option>
+            <Option key={`contract-${idx}`} value={value}>
+              {value}
+            </Option>
           ))}
         </Select>
       </Form.Item>
       <Form.Item
-        name="workTime"
+        name="WorkTime"
         rules={[
           {
-            required: false,
+            required: true,
             message: "Wybierz jedną z opcji!",
           },
         ]}
@@ -63,10 +62,10 @@ const OfferConditionsForm = ({ navigSteps }) => {
         </Select>
       </Form.Item>
       <Form.Item
-        name="shifts"
+        name="Shifts"
         rules={[
           {
-            required: false,
+            required: true,
             message: "Wybierz jedną z opcji!",
           },
         ]}
@@ -80,10 +79,10 @@ const OfferConditionsForm = ({ navigSteps }) => {
         </Select>
       </Form.Item>
       <Form.Item
-        name="leave"
+        name="Leave"
         rules={[
           {
-            required: false,
+            required: true,
             message: "Wybierz jedną z opcji!",
           },
         ]}
@@ -97,10 +96,10 @@ const OfferConditionsForm = ({ navigSteps }) => {
         </Select>
       </Form.Item>
       <Form.Item
-        name="leave"
+        name="WorkPlace"
         rules={[
           {
-            required: false,
+            required: true,
             message: "Wybierz jedną z opcji!",
           },
         ]}
@@ -117,10 +116,10 @@ const OfferConditionsForm = ({ navigSteps }) => {
         </Select>
       </Form.Item>
       <Form.Item
-        name="salary"
+        name="Salary"
         rules={[
           {
-            required: false,
+            required: true,
             message: "Podaj prawidłowe wynagrodzenie",
           },
         ]}
@@ -130,14 +129,11 @@ const OfferConditionsForm = ({ navigSteps }) => {
           addonAfter="pln/h"
           placeholder="Wynagrodzenie"
           min={19}
-          max={2000}
+          max={200}
         />
       </Form.Item>
       <div className="offer-editor-btns">
-        <Button onClick={handleBackBtn} type="primary">
-          Wstecz
-        </Button>
-        <Button htmlType="submit" onClick={handleFinishBtn} type="primary">
+        <Button htmlType="submit" type="primary">
           Dalej
         </Button>
       </div>

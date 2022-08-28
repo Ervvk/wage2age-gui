@@ -1,13 +1,29 @@
-import React from "react";
-import { Form, Input, Button, Checkbox } from "antd";
+import React, { useContext } from "react";
+import { Form, Input, Button, message } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import "./Login.less";
 import "./Login.module.less";
+import { http } from "../../helpers/utils/http";
+import { AuthContext } from "../../state/authContext";
 
 const LoginForm = () => {
-  const onFinish = (values) => {
-    console.log("Received values of form: ", values);
+  const authCtx = useContext(AuthContext);
+
+  const onFinish = async (values) => {
+    const response = await http({
+      method: "GET",
+      url: `/auth/${JSON.stringify(values)}`,
+      headers: {
+        accept: "*/*",
+      },
+    });
+
+    if (response.status === 200) {
+      authCtx.login(response.data);
+    } else {
+      message.error("Błędny login/hasło");
+    }
   };
 
   return (
@@ -20,7 +36,7 @@ const LoginForm = () => {
       onFinish={onFinish}
     >
       <Form.Item
-        name="username"
+        name="login"
         rules={[
           {
             required: true,
@@ -49,11 +65,6 @@ const LoginForm = () => {
           type="password"
           placeholder="Hasło"
         />
-      </Form.Item>
-      <Form.Item>
-        <Form.Item name="remember" valuePropName="checked" noStyle>
-          <Checkbox>Pamiętaj mnie</Checkbox>
-        </Form.Item>
       </Form.Item>
 
       <Form.Item>

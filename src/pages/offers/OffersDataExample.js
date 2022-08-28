@@ -55,5 +55,6 @@ export const offersData = [
       "Karta zniżkowa na posiłki",
       "Parking dla pracowników",
     ],
+    jobAppState: "W toku",
   },
 ];

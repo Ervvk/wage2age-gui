@@ -7,22 +7,16 @@ const OfferDetailsForm = ({ navigSteps }) => {
   const onFinish = (values) => {
     console.log("elo");
     console.log(values);
-    navigSteps.nextStep();
-  };
-  const handleFinishBtn = () => {
-    navigSteps.nextStep();
-  };
-  const handleBackBtn = () => {
-    navigSteps.prevStep();
+    navigSteps.nextStep(values);
   };
 
   return (
     <Form onFinish={onFinish}>
       <Form.Item
-        name="handicap"
+        name="Handicap"
         rules={[
           {
-            required: false,
+            required: true,
             message: "Wybierz jedną z opcji!",
           },
         ]}
@@ -39,10 +33,10 @@ const OfferDetailsForm = ({ navigSteps }) => {
         </Select>
       </Form.Item>
       <Form.Item
-        name="education"
+        name="Education"
         rules={[
           {
-            required: false,
+            required: true,
             message: "Wybierz jedną z opcji!",
           },
         ]}
@@ -59,10 +53,10 @@ const OfferDetailsForm = ({ navigSteps }) => {
         </Select>
       </Form.Item>
       <Form.Item
-        name="pcSkill"
+        name="PcSkill"
         rules={[
           {
-            required: false,
+            required: true,
             message: "Wybierz jedną z opcji!",
           },
         ]}
@@ -79,10 +73,10 @@ const OfferDetailsForm = ({ navigSteps }) => {
         </Select>
       </Form.Item>
       <Form.Item
-        name="physical"
+        name="Physical"
         rules={[
           {
-            required: false,
+            required: true,
             message: "Wybierz jedną z opcji!",
           },
         ]}
@@ -99,10 +93,10 @@ const OfferDetailsForm = ({ navigSteps }) => {
         </Select>
       </Form.Item>
       <Form.Item
-        name="experience"
+        name="Experience"
         rules={[
           {
-            required: false,
+            required: true,
             message: "Wybierz jedną z opcji!",
           },
         ]}
@@ -120,10 +114,10 @@ const OfferDetailsForm = ({ navigSteps }) => {
       </Form.Item>
 
       <Form.Item
-        name="commuting"
+        name="Commuting"
         rules={[
           {
-            required: false,
+            required: true,
             message: "Wybierz jedną z opcji!",
           },
         ]}
@@ -138,9 +132,6 @@ const OfferDetailsForm = ({ navigSteps }) => {
       </Form.Item>
 
       <div className="offer-editor-btns">
-        <Button onClick={handleBackBtn} type="primary">
-          Wstecz
-        </Button>
         <Button htmlType="submit" type="primary">
           Dalej
         </Button>

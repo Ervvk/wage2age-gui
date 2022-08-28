@@ -1,18 +1,43 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Pagination } from "antd";
 
 import "./OffersTable.less";
 import OffersTableRow from "./OffersTableElements/OffersTableRow";
 import OffersTableSorter from "./OffersTableElements/OffersTableSorter";
 
+const pageSize = 5;
 const OffersTable = ({ offersData }) => {
+  const [current, setCurrent] = useState(1);
+  const [offersPaginatedData, setPaginatedData] = useState(offersData);
+
+  useEffect(() => {
+    onPageChange(1);
+  }, [offersData]);
+
+  useEffect(() => {
+    const lastElID = pageSize * current;
+    const firsElID = lastElID - pageSize;
+    const pageData = offersData.slice(firsElID, lastElID);
+    setPaginatedData(pageData);
+  }, [current, offersData]);
+
+  const onPageChange = (page) => {
+    setCurrent(page);
+  };
+
   return (
     <div className="offers-table">
-      <OffersTableSorter />
-      {offersData.map((row, idx) => {
+      {offersPaginatedData.map((row, idx) => {
         return <OffersTableRow row={row} idx={idx} />;
       })}
-      <Pagination></Pagination>
+
+      <Pagination
+        onChange={onPageChange}
+        defaultCurrent={1}
+        pageSize={5}
+        total={offersData.length}
+        current={current}
+      />
     </div>
   );
 };

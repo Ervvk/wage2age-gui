@@ -1,25 +1,51 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./OfferEditor.less";
 
 import OfferConditionsForm from "./Forms/OfferConditionsForm";
 import OfferDescriptionForm from "./Forms/OfferDescriptionForm";
 import OfferDetailsForm from "./Forms/OfferDetailsForm";
 import OfferEditorFinal from "./OfferEditorFinal";
+import { http } from "../../helpers/utils/http";
+import { AuthContext } from "../../state/authContext";
 
-import { Steps } from "antd";
+import { message, Steps } from "antd";
 
 const { Step } = Steps;
 
 const OfferEditor = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [currentElement, setCurrentElement] = useState(<OfferConditionsForm />);
+  const [offerData, setOfferData] = useState({});
+
+  const authCtx = useContext(AuthContext);
+  const loggedUser = authCtx.loggedUser;
 
   useEffect(() => {
     currentForm(currentStep);
   }, [currentStep]);
 
+  const uploadOffer = async () => {
+    const response = await http({
+      method: "POST",
+      url: `/offers`,
+      headers: {
+        accept: "*/*",
+      },
+      data: { ...offerData, CompanyID: loggedUser.CompanyID },
+    });
+    if ((response.status = 200)) {
+      message.success("Pomyślnie dodano ofertę");
+    } else {
+      console.log("Nie udało się dodać oferty");
+      console.log(response.request);
+    }
+  };
+
   const navigSteps = {
-    nextStep: () => {
+    nextStep: (data) => {
+      setOfferData((prev) => {
+        return { ...prev, ...data };
+      });
       setCurrentStep((prev) => prev + 1);
     },
     prevStep: () => {
@@ -27,6 +53,9 @@ const OfferEditor = () => {
     },
   };
 
+  useEffect(() => {
+    console.log("formData:", offerData);
+  }, [offerData]);
   const currentForm = (step) => {
     console.log(step);
     switch (step) {
@@ -40,6 +69,7 @@ const OfferEditor = () => {
         setCurrentElement(<OfferDescriptionForm navigSteps={navigSteps} />);
         break;
       case 3:
+        uploadOffer();
         setCurrentElement(<OfferEditorFinal />);
         break;
       default:

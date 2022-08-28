@@ -2,26 +2,32 @@
 .register {
   .flexCentering(row);
   width: 100rem;
-  height: 70rem;
-  background-color: rgb(188, 190, 196);
+  height: 100rem;
+  background-color: rgb(198, 204, 209);
   font-size: large;
   color: whitesmoke;
   border: var(--border-basic);
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .register-title {
-  color: black;
+  color: rgb(0, 0, 0);
   font-size: 2.5rem;
+  margin-top: 1rem;
 }
 
 .register-content {
   .flexSpacing(column);
+  justify-content: flex-start;
   height: 100%;
   width: 50%;
   color: var(--color-font-bright);
+  padding-top: 1rem;
 }
 
 .register-form {
+  margin-top: 2rem;
   width: 80%;
 }
 .register-form-button {
@@ -31,6 +37,10 @@
 }
 .register-form-input {
   height: 4rem;
+}
+
+.register-form-textarea {
+  height: 25rem !important;
 }
 
 .register-logo {

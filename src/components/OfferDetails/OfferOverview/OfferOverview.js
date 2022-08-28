@@ -3,7 +3,7 @@ import { RiTaskLine } from "react-icons/ri";
 import "./OfferOverview.less";
 
 const OfferOverview = ({ overviewItems }) => {
-  console.log(overviewItems);
+  console.log("overview items:", overviewItems);
   return (
     <div className="offer-overview">
       <ul>
@@ -13,7 +13,7 @@ const OfferOverview = ({ overviewItems }) => {
               <span className="offer-overview-list-item-icon">
                 <RiTaskLine />
               </span>
-              <span> {item} </span>
+              <span> {item.Content} </span>
             </li>
           );
         })}

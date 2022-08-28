@@ -9,27 +9,37 @@ import OfferHeader from "./OfferHeader/OfferHeader";
 import OfferDescription from "./OfferDescription/OfferDescription";
 import OfferOverview from "./OfferOverview/OfferOverview";
 import OfferInfo from "./OfferInfo/OfferInfo";
-import { useLocation } from "react-router-dom";
 
 const OfferDetails = ({ offerData }) => {
-  const location = useLocation();
-  const detailsData = location.state.detailsData;
-  console.log(" ELO ", JSON.stringify(location.state));
-
   const { Title } = Typography;
+  console.log(offerData);
   return (
     <div className="details">
       {" "}
-      <OfferHeader position={detailsData.positionName} />
-      <OfferInfo offerInfoData={detailsData.info} />
+      <OfferHeader offerData={offerData} />
+      <OfferInfo offerInfoData={offerData} />
       <h2>Zadania</h2>
-      <OfferOverview overviewItems={detailsData.tasks} />
+      <OfferOverview
+        overviewItems={[
+          ...offerData.details.filter((detail) => detail.Type === "tasks"),
+        ]}
+      />
       <h2>Nasze wymagania</h2>
-      <OfferOverview overviewItems={detailsData.requirements} />
+      <OfferOverview
+        overviewItems={[
+          ...offerData.details.filter(
+            (detail) => detail.Type === "requirements"
+          ),
+        ]}
+      />
       <h2>Opis stanowiska</h2>
-      <OfferDescription descriptionContent={detailsData.description} />
+      <OfferDescription descriptionContent={offerData.overview?.Description} />
       <h2>Dodatkowe benefity</h2>
-      <OfferOverview overviewItems={detailsData.benefits} />
+      <OfferOverview
+        overviewItems={[
+          ...offerData.details.filter((detail) => detail.Type === "benefits"),
+        ]}
+      />
     </div>
   );
 };

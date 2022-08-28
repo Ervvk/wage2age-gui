@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { Form, Input, Button, InputNumber, Upload, Select } from "antd";
+import {
+  Form,
+  Input,
+  Button,
+  InputNumber,
+  Upload,
+  Select,
+  message,
+} from "antd";
 import {
   UserOutlined,
   LockOutlined,
@@ -10,26 +18,51 @@ import { Link } from "react-router-dom";
 import "./Register.less";
 import { citiesData } from "../../assets/cities";
 const { Option } = Select;
+import { http, blobToBase64, b64toUrl } from "../../helpers/utils/http";
+
 const RegisterForm = () => {
-  const uploadProps = {
-    name: "file",
-    action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
-    headers: {
-      authorization: "authorization-text",
-    },
+  const [userType, setUserType] = useState("candidate");
 
-    onChange(info) {
-      if (info.file.status !== "uploading") {
-        console.log(info.file, info.fileList);
-      }
+  /*
+  const getFile = async (e) => {
+    //let link = document.createElement("a");
+    let obj = e.file.originFileObj;
+    let blob = new Blob([e.file.originFileObj]);
+    console.log("blobb", blob);
+    var reader = new FileReader();
+    const blob64 = await blobToBase64(blob);
+    console.log("blobb", blob64);
+    const formData = new FormData();
 
-      if (info.file.status === "done") {
-        message.success(`${info.file.name} file uploaded successfully`);
-      } else if (info.file.status === "error") {
-        message.error(`${info.file.name} file upload failed.`);
-      }
-    },
+    formData.append("file", blob64);
+    formData.append("name", e.file.originFileObj.name);
+    const link = document.createElement("a");
+    link.download = obj.name;
+    link.href = await b64toUrl(blob64);
+    link.click();
+    /*download file from app
+    const link = document.createElement("a");
+    link.download = obj.name;
+    link.href = await b64toUrl(blob64);
+    link.click();
+    
+
+    const response = await http({
+      method: "POST",
+      url: `/candidate/addDocument`,
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+
+      data: formData,
+    });
+
+    if (Array.isArray(e)) {
+      return e;
+    }
+    return e && e.file.originFileObj;
   };
+  */
 
   const layout = {
     labelCol: {
@@ -39,29 +72,34 @@ const RegisterForm = () => {
       span: 16,
     },
   };
+
   const onUserTypeChange = (value) => {
     setUserType(value);
     console.log(value);
   };
-  const validateMessages = {
-    required: "${label} is required!",
-    types: {
-      email: "${label} is not a valid email!",
-      number: "${label} is not a valid number!",
-    },
-    number: {
-      range: "${label} must be between ${min} and ${max}",
-    },
-  };
 
-  const onFinish = (values) => {
-    console.log(values);
+  const onFinish = async (values) => {
+    const response = await http({
+      method: "POST",
+      url: `/users`,
+      headers: {
+        accept: "*/*",
+      },
+
+      data: { ...values, UserType: userType },
+    });
+
+    if (response.status === 200) {
+      message.success("Rejestracja kompletna, teraz możesz się zalogować");
+    } else {
+      message.error("Nie udało się utworzyć konta. Podaj inny login/hasło");
+    }
   };
 
   const formItemsEmployer = (
     <>
       <Form.Item
-        name={"company-name"}
+        name={"CompanyName"}
         rules={[
           {
             required: true,
@@ -73,7 +111,7 @@ const RegisterForm = () => {
       </Form.Item>
 
       <Form.Item
-        name="voivodeship"
+        name="Voivodeship"
         rules={[
           {
             required: true,
@@ -85,7 +123,7 @@ const RegisterForm = () => {
           {citiesData.map((city, idx) => {
             return (
               <Option key={idx} value={city.name}>
-                {city.name}
+                {city.displayName}
               </Option>
             );
           })}
@@ -94,7 +132,7 @@ const RegisterForm = () => {
         <CitySearchInput inputWidth="40rem" inputHeight="4rem" />*/}
       </Form.Item>
       <Form.Item
-        name="city"
+        name="City"
         rules={[
           {
             required: true,
@@ -105,7 +143,7 @@ const RegisterForm = () => {
         <Input placeholder="Miasto" className="register-form-input" />
       </Form.Item>
       <Form.Item
-        name="street"
+        name="Street"
         rules={[
           {
             required: true,
@@ -121,7 +159,7 @@ const RegisterForm = () => {
     <>
       {" "}
       <Form.Item
-        name={"name"}
+        name={"Name"}
         rules={[
           {
             required: true,
@@ -132,7 +170,7 @@ const RegisterForm = () => {
         <Input className="register-form-input" placeholder="Imię" />
       </Form.Item>
       <Form.Item
-        name={"surname"}
+        name={"Surname"}
         rules={[
           {
             required: true,
@@ -143,7 +181,21 @@ const RegisterForm = () => {
         <Input className="register-form-input" placeholder="Nazwisko" />
       </Form.Item>
       <Form.Item
-        name={["age"]}
+        name={"PhoneNumber"}
+        rules={[
+          {
+            required: true,
+            message: "Podaj nr tel. komórkowego (9 cyfr)",
+          },
+        ]}
+      >
+        <Input
+          className="register-form-input"
+          placeholder="Numer telefonu kom."
+        />
+      </Form.Item>
+      <Form.Item
+        name={["Age"]}
         rules={[
           {
             type: "number",
@@ -154,38 +206,54 @@ const RegisterForm = () => {
           },
         ]}
       >
-        <InputNumber className="register-form-input" placeholder="Wiek" />
+        <InputNumber
+          defaultValue={40}
+          style={{ width: "100%" }}
+          className="register-form-input"
+          placeholder="Wiek"
+        />
       </Form.Item>
-      <Form.Item name={"cv"}>
+      <Form.Item name={"Document"}>
+        <Input.TextArea
+          placeholder={"Opisz swoje doświadczenie zawodowe"}
+          className="register-form-textarea"
+        ></Input.TextArea>
+      </Form.Item>
+      {/*
+      <Form.Item name={"Document"} getValueFromEvent={getFile}>
         <Upload {...uploadProps}>
           <Button icon={<UploadOutlined />}>Dodaj CV</Button>
         </Upload>
       </Form.Item>
+      */}
     </>
   );
 
-  const [userType, setUserType] = useState("candidate");
-
   return (
-    <Form
-      name="normal_register"
-      className="register-form"
-      onFinish={onFinish}
-      validateMessages={validateMessages}
-    >
-      <Form.Item name={"userType"}>
+    <Form name="normal_register" className="register-form" onFinish={onFinish}>
+      <Form.Item name={"UserType"}>
         <Select
           onChange={onUserTypeChange}
           className="register-form-input"
           defaultValue="candidate"
+          rules={[
+            {
+              required: true,
+              message: "Wybierz typ usera",
+            },
+          ]}
         >
-          <Option value="employer">Pracodawca</Option>
-          <Option value="candidate">Kandydat</Option>
+          <Option value="employer" key={"employer"}>
+            Pracodawca
+          </Option>
+          <Option value="candidate" key={"candidate"}>
+            Kandydat
+          </Option>
         </Select>
       </Form.Item>
 
       <Form.Item
-        name="username"
+        name="Login"
         rules={[
           {
             required: true,
@@ -200,7 +268,7 @@ const RegisterForm = () => {
         />
       </Form.Item>
       <Form.Item
-        name="password"
+        name="Password"
         rules={[
           {
             required: true,
@@ -216,7 +284,7 @@ const RegisterForm = () => {
         />
       </Form.Item>
       <Form.Item
-        name={["email"]}
+        name={"Email"}
         rules={[
           {
             type: "email",
@@ -242,7 +310,7 @@ const RegisterForm = () => {
         >
           Zarejestruj się
         </Button>{" "}
-        Masz konto? <Link to="/login">Zaloguj sie</Link>
+        Masz konto? <Link to="/login">Zaloguj się</Link>
       </Form.Item>
     </Form>
   );

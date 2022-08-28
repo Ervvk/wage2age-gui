@@ -3,16 +3,18 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   mode: "development",
-  entry: path.join(__dirname, "src", "/index.js"),
-  devtool: "inline-source-map",
+  entry: "./src/index.js",
   devServer: {
-    static: "./dist",
+    static: {
+      directory: path.join(__dirname, "build"),
+    },
+    historyApiFallback: true,
     hot: true,
     port: 3000,
-    historyApiFallback: true,
   },
   output: {
-    path: path.resolve(__dirname, "dist"),
+    filename: "main.js",
+    path: path.resolve(__dirname, "build"),
   },
   module: {
     rules: [

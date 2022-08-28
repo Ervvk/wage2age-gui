@@ -8,7 +8,9 @@ const OfferInfoItem = ({ name, icon, value }) => {
       <Tooltip title={name}>
         <div className="offer-info-item-icon">{icon}</div>
       </Tooltip>
-      <span className="offer-info-item-val">{value}</span>
+      <Tooltip title={value}>
+        <span className="offer-info-item-val">{value}</span>
+      </Tooltip>
     </div>
   );
 };

@@ -5,35 +5,56 @@ import "../OfferEditor.less";
 const { TextArea } = Input;
 
 const OfferDescriptionForm = ({ navigSteps }) => {
-  const [descriptionData, setDescriptionData] = useState({});
+  const [descriptionData, setDescriptionData] = useState([]);
 
   const onFinish = (values) => {
-    navigSteps.nextStep();
-    const description = { ...values, listsData: descriptionData };
+    const description = { ...values, offerInfos: descriptionData };
+    navigSteps.nextStep(description);
     console.log(JSON.stringify(description));
   };
-  const handleBackBtn = () => {
-    navigSteps.prevStep();
-  };
 
-  const handleEditorsState = (editorInput) => {
-    console.log("data edutor", editorInput);
-    setDescriptionData((prev) => ({ ...prev, ...editorInput }));
+  const handleEditorsState = (editorInput, listType) => {
+    setDescriptionData((prev) => {
+      const filteredArray = prev.filter((el) => el.type !== listType);
+      console.log(filteredArray);
+      return [...filteredArray, ...editorInput];
+    });
   };
 
   return (
     <Form onFinish={onFinish}>
       {" "}
-      <Form.Item>
-        <TextArea rows={4} placeholder="Opis, max 350 znaków" maxLength={350} />
+      <Form.Item
+        name="Description"
+        rules={[
+          {
+            required: true,
+            message: "Uzupełnij opis",
+          },
+        ]}
+      >
+        <TextArea
+          rows={4}
+          placeholder="Opis, max 1000 znaków"
+          maxLength={1000}
+        />
       </Form.Item>
-      <OfferEditorListInput title={"Zadania"} setData={handleEditorsState} />
-      <OfferEditorListInput title={"Wymagania"} setData={handleEditorsState} />
-      <OfferEditorListInput title={"Benefity"} setData={handleEditorsState} />
+      <OfferEditorListInput
+        listType={"tasks"}
+        title={"Zadania"}
+        setData={handleEditorsState}
+      />
+      <OfferEditorListInput
+        listType={"requirements"}
+        title={"Wymagania"}
+        setData={handleEditorsState}
+      />
+      <OfferEditorListInput
+        listType={"benefits"}
+        title={"Benefity"}
+        setData={handleEditorsState}
+      />
       <div className="offer-editor-btns">
-        <Button onClick={handleBackBtn} type="primary">
-          Wstecz
-        </Button>
         <Button htmlType="submit" type="primary">
           Dodaj ofertę
         </Button>

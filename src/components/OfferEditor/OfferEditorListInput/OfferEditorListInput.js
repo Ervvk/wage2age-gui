@@ -3,7 +3,7 @@ import "./OfferEditorListInput.less";
 import { Button, Input, message } from "antd";
 import { AiOutlineDelete } from "react-icons/ai";
 
-const OfferEditorListInput = ({ title, setData }) => {
+const OfferEditorListInput = ({ title, listType, setData }) => {
   const [listData, setListData] = useState([]);
   const [inputValue, setInputValue] = useState("");
 
@@ -12,7 +12,9 @@ const OfferEditorListInput = ({ title, setData }) => {
       message.error("Wartość musi mieć przynajmniej 3 znaki");
       return;
     }
-    setListData((prev) => (prev.length > 4 ? prev : [...prev, inputValue]));
+    setListData((prev) =>
+      prev.length > 4 ? prev : [...prev, { value: inputValue, type: listType }]
+    );
     resetInputField();
   };
 
@@ -29,7 +31,7 @@ const OfferEditorListInput = ({ title, setData }) => {
   };
 
   useEffect(() => {
-    setData({ [`${title}`]: listData });
+    setData(listData, listType);
   }, [listData]);
 
   return (
@@ -43,7 +45,7 @@ const OfferEditorListInput = ({ title, setData }) => {
           <ul>
             {listData.map((el, idx) => (
               <li key={idx}>
-                {el}
+                {el.value}
                 <Button
                   onClick={() => handleDeleteBtn(idx)}
                   icon={<AiOutlineDelete />}

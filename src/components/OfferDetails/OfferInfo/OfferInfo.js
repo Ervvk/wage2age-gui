@@ -14,42 +14,42 @@ const OfferInfo = ({ offerInfoData }) => {
     {
       name: "Stopień / rodzaj niepełnosprawności",
       icon: <BiHandicap />,
-      value: offerInfoData.handicap,
+      value: offerInfoData.overview.Handicap,
     },
     {
       name: "Wymagane wykształcenie",
       icon: <FaUniversity />,
-      value: offerInfoData.education,
+      value: offerInfoData.overview.Education,
     },
     {
       name: "Obsługa komputera",
       icon: <MdComputer />,
-      value: offerInfoData.pcSkill,
+      value: offerInfoData.overview.PcSkill,
     },
     {
       name: "Praca fizyczna",
       icon: <GiBiceps />,
-      value: offerInfoData.physical,
+      value: offerInfoData.overview.Physical,
     },
     {
       name: "Wymagane doświadczenie na stanowisku",
       icon: <AiOutlineLineChart />,
-      value: offerInfoData.experience,
+      value: offerInfoData.overview.Experience,
     },
     {
       name: "Tryb pracy (dzienny / nocny / mieszany)",
       icon: <MdNightlight />,
-      value: offerInfoData.shifts,
+      value: offerInfoData.overview.Shifts,
     },
     {
       name: "Dojazd do miejsca pracy",
       icon: <FaBusAlt />,
-      value: offerInfoData.commuting,
+      value: offerInfoData.overview.Commuting,
     },
     {
       name: "Wymiar etatu",
       icon: <CgTimelapse />,
-      value: offerInfoData.workTime,
+      value: offerInfoData.overview.WorkTime,
     },
   ];
   return (
