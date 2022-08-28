@@ -1,8 +1,9 @@
 import React from "react";
-import "./JobAppsTable.less";
-import { Button, Table } from "antd";
 import { useNavigate } from "react-router-dom";
+import { Button, Table } from "antd";
 import moment from "moment";
+
+import "./JobAppsTable.less";
 
 const JobAppsTable = ({ jobAppsData }) => {
   const navigate = useNavigate();

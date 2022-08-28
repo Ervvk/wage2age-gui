@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Input, Button, Modal, Form, Select } from "antd";
+import { AiOutlineFilter } from "react-icons/ai";
 import { citiesData } from "../../assets/cities";
+import FiltersForm from "../Filters/FiltersForm";
+
 import "./OfferSearch.less";
 import "./OfferSearch.module.less";
-import { AiOutlineFilter } from "react-icons/ai";
-import FiltersForm from "../Filters/FiltersForm";
 
 const OfferSearch = ({
   handleSetFilters,
@@ -12,8 +13,7 @@ const OfferSearch = ({
   handleResetFilters,
 }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [positionInputValue, setPositionInputValue] = useState("");
-  const [selectedVoivodeship, selectedVoivodeshipValue] = useState("");
+
   const showModal = () => {
     setIsModalVisible(true);
   };
@@ -29,9 +29,9 @@ const OfferSearch = ({
 
   const handleSearchButton = (values) => {
     handleSetFilters(values);
-
     handleFilterOffers();
   };
+
   return (
     <div className="offer-search">
       <span className="offer-search-title">Filtruj oferty pracy</span>{" "}
@@ -57,7 +57,6 @@ const OfferSearch = ({
               })}
             </Select>
           </Form.Item>
-
           <Button
             className="offer-search-btn-confirm"
             type="primary"

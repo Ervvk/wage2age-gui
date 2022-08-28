@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Pagination } from "antd";
+import OffersTableRow from "./OffersTableElements/OffersTableRow";
 
 import "./OffersTable.less";
-import OffersTableRow from "./OffersTableElements/OffersTableRow";
-import OffersTableSorter from "./OffersTableElements/OffersTableSorter";
 
 const pageSize = 5;
+
 const OffersTable = ({ offersData }) => {
   const [current, setCurrent] = useState(1);
   const [offersPaginatedData, setPaginatedData] = useState(offersData);

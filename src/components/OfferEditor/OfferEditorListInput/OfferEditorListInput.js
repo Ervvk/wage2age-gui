@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import "./OfferEditorListInput.less";
 import { Button, Input, message } from "antd";
 import { AiOutlineDelete } from "react-icons/ai";
+
+import "./OfferEditorListInput.less";
 
 const OfferEditorListInput = ({ title, listType, setData }) => {
   const [listData, setListData] = useState([]);
@@ -21,11 +22,11 @@ const OfferEditorListInput = ({ title, listType, setData }) => {
   const handleDeleteBtn = (idxToDelete) => {
     setListData((prev) => prev.filter((el, idx) => idx != idxToDelete));
   };
+
   const handleUserInput = (e) => {
     setInputValue(e.target.value);
   };
 
-  // Reset Input Field handler
   const resetInputField = () => {
     setInputValue("");
   };
@@ -55,7 +56,6 @@ const OfferEditorListInput = ({ title, listType, setData }) => {
           </ul>
         </div>
       )}
-
       <div className="editor-list-input-wrapper">
         <Input
           value={inputValue}

@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
 import { Route, Routes, Navigate, Outlet } from "react-router-dom";
+import { AuthContext } from "../state/authContext";
+
 import Home from "./home/Home";
 import Register from "./register/Register";
 import Offers from "./offers/Offers";
@@ -8,7 +10,6 @@ import Login from "./login/Login";
 import UserOffers from "./userOffers/UserOffers";
 import OfferEdition from "./offerEdition/OfferEdition";
 import Candidates from "./candidates/Candidates";
-import { AuthContext } from "../state/authContext";
 
 const ProtectedRoute = ({ isAllowed, redirectPath = "/login", children }) => {
   const authCtx = useContext(AuthContext);

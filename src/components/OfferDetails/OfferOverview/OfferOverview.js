@@ -1,9 +1,9 @@
 import React from "react";
 import { RiTaskLine } from "react-icons/ri";
+
 import "./OfferOverview.less";
 
 const OfferOverview = ({ overviewItems }) => {
-  console.log("overview items:", overviewItems);
   return (
     <div className="offer-overview">
       <ul>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form, Select, Slider, Row, Col, InputNumber } from "antd";
 import { selectOptions } from "../../assets/offersOptions";
+
 const FiltersForm = ({ handleCloseModal, filterOffers }) => {
   const [inputValue, setInputValue] = useState(19);
 

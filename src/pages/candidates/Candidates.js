@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
-import CandidatesTable from "../../components/CandidatesTable/CandidatesTable";
-import { Typography } from "antd";
 import { useParams } from "react-router-dom";
-import "./Candidates.less";
+import { Typography } from "antd";
 import { http } from "../../helpers/utils/http";
+import CandidatesTable from "../../components/CandidatesTable/CandidatesTable";
+
+import "./Candidates.less";
+
 const { Title } = Typography;
+
 const Candidates = () => {
   const params = useParams();
   const [candidatesData, setCandidatesData] = useState([]);

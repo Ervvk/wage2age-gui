@@ -1,18 +1,15 @@
 import React from "react";
-import { Button, Typography } from "antd";
-import { HeartOutlined } from "@ant-design/icons";
-import { ShareAltOutlined } from "@ant-design/icons";
-import "./OfferDetails.less";
-import "./OfferDetails.module.less";
+import { Typography } from "antd";
 
 import OfferHeader from "./OfferHeader/OfferHeader";
 import OfferDescription from "./OfferDescription/OfferDescription";
 import OfferOverview from "./OfferOverview/OfferOverview";
 import OfferInfo from "./OfferInfo/OfferInfo";
 
+import "./OfferDetails.less";
+import "./OfferDetails.module.less";
+
 const OfferDetails = ({ offerData }) => {
-  const { Title } = Typography;
-  console.log(offerData);
   return (
     <div className="details">
       {" "}

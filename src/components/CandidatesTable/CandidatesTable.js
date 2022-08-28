@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import "./CandidatesTable.less";
 import { Table, Space, Button, Modal, Select, message } from "antd";
 import { GrDocumentDownload } from "react-icons/gr";
-import { AiOutlineEdit } from "react-icons/ai";
-import { ExclamationCircleOutlined } from "@ant-design/icons";
 import moment from "moment";
 import { http } from "../../helpers/utils/http";
+
+import "./CandidatesTable.less";
 
 const { Option } = Select;
 
@@ -44,6 +43,7 @@ const CandidatesTable = ({ candidatesData, fetchCandidatesData }) => {
     if (val !== record.JobAppStateID)
       await handleUpdateRecord(val, record.JobApplicationID);
   };
+
   const columns = [
     {
       title: "Data aplikacji",

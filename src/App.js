@@ -1,23 +1,24 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Layout } from "antd";
-import "./App.less";
-import "./App.module.less";
-
+import { AuthContext } from "./state/authContext";
 import Header from "./components/Layout/Header/Header";
 import Routes from "./pages/routes";
 
-import { AuthContext } from "./state/authContext";
+import "./App.less";
+import "./App.module.less";
 
 const App = () => {
   const { Content, Footer } = Layout;
   const navigate = useNavigate();
+
   const ctxInit = {
     isLoggedIn: false,
     loggedUser: {},
     login: () => {},
     logout: () => {},
   };
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loggedUser, setLoggedUser] = useState(
     JSON.parse(localStorage.getItem("user")) || ctxInit

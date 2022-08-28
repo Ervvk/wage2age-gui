@@ -1,6 +1,5 @@
 import React from "react";
 import "./OfferDetailsEmployer.less";
-import { useLocation } from "react-router-dom";
 
 const OfferDetailsEmployer = ({ offerData }) => {
   return (

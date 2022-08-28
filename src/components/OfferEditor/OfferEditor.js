@@ -1,24 +1,23 @@
 import React, { useContext, useEffect, useState } from "react";
-import "./OfferEditor.less";
-
+import { message, Steps } from "antd";
+import { http } from "../../helpers/utils/http";
+import { AuthContext } from "../../state/authContext";
 import OfferConditionsForm from "./Forms/OfferConditionsForm";
 import OfferDescriptionForm from "./Forms/OfferDescriptionForm";
 import OfferDetailsForm from "./Forms/OfferDetailsForm";
 import OfferEditorFinal from "./OfferEditorFinal";
-import { http } from "../../helpers/utils/http";
-import { AuthContext } from "../../state/authContext";
 
-import { message, Steps } from "antd";
+import "./OfferEditor.less";
 
 const { Step } = Steps;
 
 const OfferEditor = () => {
+  const authCtx = useContext(AuthContext);
+  const loggedUser = authCtx.loggedUser;
+
   const [currentStep, setCurrentStep] = useState(0);
   const [currentElement, setCurrentElement] = useState(<OfferConditionsForm />);
   const [offerData, setOfferData] = useState({});
-
-  const authCtx = useContext(AuthContext);
-  const loggedUser = authCtx.loggedUser;
 
   useEffect(() => {
     currentForm(currentStep);
@@ -36,7 +35,6 @@ const OfferEditor = () => {
     if ((response.status = 200)) {
       message.success("Pomyślnie dodano ofertę");
     } else {
-      console.log("Nie udało się dodać oferty");
       console.log(response.request);
     }
   };
@@ -53,11 +51,7 @@ const OfferEditor = () => {
     },
   };
 
-  useEffect(() => {
-    console.log("formData:", offerData);
-  }, [offerData]);
   const currentForm = (step) => {
-    console.log(step);
     switch (step) {
       case 0:
         setCurrentElement(<OfferConditionsForm navigSteps={navigSteps} />);

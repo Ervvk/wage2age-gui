@@ -1,12 +1,11 @@
 import React, { useContext, useState } from "react";
 import { Button, message, Modal } from "antd";
-import "./OfferDetailsSider.less";
 import { IoDocumentTextOutline } from "react-icons/io5";
-import { useLocation } from "react-router-dom";
-import OfferApplyForm from "../../OfferApply/OfferApplyForm";
 import { AuthContext } from "../../../state/authContext";
 import { http } from "../../../helpers/utils/http";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
+
+import "./OfferDetailsSider.less";
 
 const { confirm } = Modal;
 
@@ -48,11 +47,9 @@ const OfferDetailsSider = ({ offerData }) => {
       icon: <ExclamationCircleOutlined />,
       okText: "Tak",
       cancelText: "Nie",
-
       onOk() {
         postJobApplication();
       },
-
       onCancel() {
         console.log("Cancel");
       },

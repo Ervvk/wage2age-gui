@@ -1,15 +1,18 @@
 import React, { useContext, useEffect, useState } from "react";
-import "./UserOffers.less";
 import { Typography } from "antd";
 import { AuthContext } from "../../state/authContext";
 import JobAppsTable from "../../components/JobAppsTable/JobAppsTable";
 import { http } from "../../helpers/utils/http";
+
+import "./UserOffers.less";
+
 const { Title } = Typography;
+
 const UserOffers = () => {
-  const [jobAppsData, setJobAppsData] = useState([]);
   const authCtx = useContext(AuthContext);
-  console.log(authCtx);
   const userID = authCtx.loggedUser.CandidateID;
+
+  const [jobAppsData, setJobAppsData] = useState([]);
 
   const fetchData = async () => {
     const response = await http({

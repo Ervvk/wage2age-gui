@@ -1,6 +1,7 @@
 import React from "react";
-import "./OfferInfoItem.less";
 import { Tooltip } from "antd";
+
+import "./OfferInfoItem.less";
 
 const OfferInfoItem = ({ name, icon, value }) => {
   return (

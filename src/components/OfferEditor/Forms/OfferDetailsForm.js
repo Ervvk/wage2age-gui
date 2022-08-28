@@ -1,12 +1,11 @@
 import React from "react";
-import { Form, Input, Select, Button } from "antd";
-import "../OfferEditor.less";
+import { Form, Select, Button } from "antd";
 import { selectOptions } from "../../../assets/offersOptions";
+
+import "../OfferEditor.less";
 
 const OfferDetailsForm = ({ navigSteps }) => {
   const onFinish = (values) => {
-    console.log("elo");
-    console.log(values);
     navigSteps.nextStep(values);
   };
 
@@ -112,7 +111,6 @@ const OfferDetailsForm = ({ navigSteps }) => {
           ))}
         </Select>
       </Form.Item>
-
       <Form.Item
         name="Commuting"
         rules={[
@@ -130,7 +128,6 @@ const OfferDetailsForm = ({ navigSteps }) => {
           ))}
         </Select>
       </Form.Item>
-
       <div className="offer-editor-btns">
         <Button htmlType="submit" type="primary">
           Dalej

@@ -1,16 +1,18 @@
 import React, { useContext, useEffect, useState } from "react";
-import "./Offers.less";
-import OfferSearch from "../../components/OfferSearch/OfferSearch";
-import OffersTable from "../../components/OffersTable/OffersTable";
 import { http } from "../../helpers/utils/http";
 import { AuthContext } from "../../state/authContext";
+import OfferSearch from "../../components/OfferSearch/OfferSearch";
+import OffersTable from "../../components/OffersTable/OffersTable";
+
+import "./Offers.less";
+
 const Offers = () => {
+  const authCtx = useContext(AuthContext);
+  const loggedUser = authCtx.loggedUser;
+
   const [offersData, setOffersData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [filterRules, setFilterRules] = useState({});
-  const authCtx = useContext(AuthContext);
-  const loggedUser = authCtx.loggedUser;
-  console.log(loggedUser);
 
   const fetchData = async () => {
     const req =
@@ -44,7 +46,6 @@ const Offers = () => {
 
   const filterOffers = () => {
     if (offersData.length > 0 && Object.keys(filterRules).length > 0) {
-      console.log(offersData);
       const filteredArr = offersData.filter((item) => {
         for (const key in filterRules) {
           if (
@@ -52,10 +53,11 @@ const Offers = () => {
             item[key] !== filterRules[key] &&
             filterRules[key] !== ""
           ) {
-            console.log(filterRules[key]);
             if (key !== "Salary" && key !== "PositionName") return false;
+
             if (key === "Salary")
               return item["Salary"] >= filterRules["Salary"];
+
             if (key === "PositionName") {
               const positionNameInput = item["PositionName"].toLowerCase();
               if (
@@ -70,8 +72,6 @@ const Offers = () => {
         }
         return true;
       });
-      console.log(filteredArr);
-
       setFilteredData(filteredArr);
     }
   };

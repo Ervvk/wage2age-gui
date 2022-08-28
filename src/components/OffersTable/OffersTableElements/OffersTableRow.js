@@ -1,26 +1,28 @@
 import React, { useContext } from "react";
-import { Button } from "antd";
-import { EnvironmentOutlined } from "@ant-design/icons";
-import { UserOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../state/authContext";
+import { Button } from "antd";
+import { EnvironmentOutlined, UserOutlined } from "@ant-design/icons";
+import { HiOutlineBriefcase } from "react-icons/hi";
 
 import "../OffersTable.less";
-import { HiOutlineBriefcase } from "react-icons/hi";
-import { AuthContext } from "../../../state/authContext";
 
 const OffersTableRow = ({ row, idx }) => {
   const authCtx = useContext(AuthContext);
-  const tags = [row.Workplace, row.Experience];
   const navig = useNavigate();
+
+  const tags = [row.Workplace, row.Experience];
 
   const handleOfferClick = () => {
     navig(`/offer/${row.OfferID}`, { replace: true });
   };
+
   const handleCandidatesRedirect = (e) => {
     navig(`/candidates/${row.OfferID}`, { replace: true });
     e.preventDefault(); // Error
     e.stopPropagation();
   };
+
   return (
     <div className="row" key={idx} onClick={handleOfferClick}>
       <div className="row-top-wrapper">
@@ -45,7 +47,6 @@ const OffersTableRow = ({ row, idx }) => {
             </div>
           ))}
         </div>
-
         <div className="row-salary">
           <span>{row.Salary} pln/h</span>
         </div>

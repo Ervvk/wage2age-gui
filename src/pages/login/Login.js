@@ -1,16 +1,10 @@
 import React from "react";
-import "antd/dist/antd.css";
-import "./Login.less";
 import LoginForm from "./LoginForm";
 import loginLogo from "../../assets/graphics/login_logo.svg";
 
+import "./Login.less";
+
 const Login = () => {
-  /*
-  <div className="login-form-inputs">
-  <Input className="login-form-input"></Input>
-  <Input className="login-form-input"></Input>
-</div>
-*/
   return (
     <div className="login">
       <div className="login-graphic">

@@ -1,6 +1,4 @@
 import React from "react";
-import "./OfferInfo.less";
-import OfferInfoItem from "./OfferInfoItem/OfferInfoItem";
 import { BiHandicap } from "react-icons/bi";
 import { FaUniversity } from "react-icons/fa";
 import { GiBiceps } from "react-icons/gi";
@@ -9,6 +7,10 @@ import { MdNightlight } from "react-icons/md";
 import { FaBusAlt } from "react-icons/fa";
 import { CgTimelapse } from "react-icons/cg";
 import { MdComputer } from "react-icons/md";
+
+import OfferInfoItem from "./OfferInfoItem/OfferInfoItem";
+import "./OfferInfo.less";
+
 const OfferInfo = ({ offerInfoData }) => {
   const infoData = [
     {
@@ -52,6 +54,7 @@ const OfferInfo = ({ offerInfoData }) => {
       value: offerInfoData.overview.WorkTime,
     },
   ];
+
   return (
     <div className="offer-info">
       {infoData.map((item, idx) => (

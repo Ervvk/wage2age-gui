@@ -1,5 +1,6 @@
 import React from "react";
 import loginLogo from "../../assets/graphics/login_logo.svg";
+
 const Home = () => {
   return (
     <div>

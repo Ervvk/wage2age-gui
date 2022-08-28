@@ -2,11 +2,10 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Layout, Space } from "antd";
 import { DollarOutlined, EuroOutlined } from "@ant-design/icons";
+import HeaderNavigation from "./HeaderNavigation";
 
 import "./Header.module.less";
 import "./Header.less";
-
-import HeaderNavigation from "./HeaderNavigation";
 
 const Header = () => {
   const { Header } = Layout;
@@ -29,7 +28,6 @@ const Header = () => {
         <span style={{ display: "inline-block" }}>{logo}</span>
         WAGE NO AGE
       </div>
-
       <Space direction="horizontal">
         <HeaderNavigation />
       </Space>

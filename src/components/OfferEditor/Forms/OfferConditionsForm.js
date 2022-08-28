@@ -1,12 +1,11 @@
 import React from "react";
 import { Form, Input, Select, Button, InputNumber } from "antd";
 import { selectOptions } from "../../../assets/offersOptions";
+
 import "../OfferEditor.less";
 
 const OfferConditionsForm = ({ navigSteps }) => {
   const onFinish = (values) => {
-    const resObj = { ...values };
-    console.log(resObj);
     navigSteps.nextStep(values);
   };
 
@@ -26,7 +25,6 @@ const OfferConditionsForm = ({ navigSteps }) => {
           className="offer-edition-form-input"
         />
       </Form.Item>
-
       <Form.Item
         name="Contract"
         rules={[

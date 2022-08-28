@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { Form, Input, Select, Button } from "antd";
+import { Form, Input, Button } from "antd";
 import OfferEditorListInput from "../OfferEditorListInput/OfferEditorListInput";
+
 import "../OfferEditor.less";
+
 const { TextArea } = Input;
 
 const OfferDescriptionForm = ({ navigSteps }) => {
@@ -10,7 +12,6 @@ const OfferDescriptionForm = ({ navigSteps }) => {
   const onFinish = (values) => {
     const description = { ...values, offerInfos: descriptionData };
     navigSteps.nextStep(description);
-    console.log(JSON.stringify(description));
   };
 
   const handleEditorsState = (editorInput, listType) => {

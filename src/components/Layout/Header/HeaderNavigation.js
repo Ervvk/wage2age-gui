@@ -11,6 +11,7 @@ import "./Header.less";
 const HeaderNavigation = () => {
   const authCtx = useContext(AuthContext);
   const userType = authCtx.loggedUser.UserType;
+
   const navigate = useNavigate();
 
   const handleLogoutBtn = () => {

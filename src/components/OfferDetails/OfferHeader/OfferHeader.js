@@ -1,14 +1,16 @@
 import React from "react";
-import "./OfferHeader.less";
+import { Button, message } from "antd";
 import { HiOutlineBriefcase } from "react-icons/hi";
 import { EnvironmentOutlined, ShareAltOutlined } from "@ant-design/icons";
-import { Button, message } from "antd";
+
+import "./OfferHeader.less";
 
 const OfferHeader = ({ offerData }) => {
   const handleShareBtn = () => {
     navigator.clipboard.writeText(window.location.href);
     message.success("Skopiowano adres oferty do schowka!");
   };
+
   return (
     <div className="details-header">
       <Button
@@ -34,5 +36,5 @@ const OfferHeader = ({ offerData }) => {
     </div>
   );
 };
-//     <div className="details-header-graphic"></div>
+
 export default OfferHeader;
