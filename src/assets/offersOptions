@@ -1,10 +1,17 @@
 export const selectOptions = {
-  contract: ["Umowa o pracę", "Umowa o dzieło", "Umowa zlecenie", "B2B"],
+  contract: [
+    "Umowa o pracę",
+    "Umowa o dzieło",
+    "Umowa zlecenie",
+    "B2B",
+    "Do ustalenia",
+  ],
   handicap: [
     "fiz, stopień lekki",
     "fiz, stopień umiarkowany",
     "umysł, stopień lekki",
     "umysł, stopień umiarkowany",
+    "pełna sprawność",
   ],
   education: ["wyższe", "średnie", "podstawowe", "inne"],
   pcSkill: ["brak", "podstawowa", "swobodna", "zaawansowana"],

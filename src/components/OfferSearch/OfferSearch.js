@@ -81,7 +81,7 @@ const OfferSearch = ({
           <span style={{ paddingLeft: ".5rem" }}>Więcej filtrów</span>
         </Button>
       </div>
-      <Modal visible={isModalVisible} footer={null}>
+      <Modal visible={isModalVisible} footer={null} onCancel={handleCancel}>
         <FiltersForm handleCloseModal={handleCancel} filterOffers={handleOk} />
       </Modal>
     </div>

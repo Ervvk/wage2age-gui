@@ -26,7 +26,7 @@ const Header = () => {
     <Header>
       <div className="logo" onClick={handleLogoClick}>
         <span style={{ display: "inline-block" }}>{logo}</span>
-        WAGE NO AGE
+        WAGE 2 AGE
       </div>
       <Space direction="horizontal">
         <HeaderNavigation />
