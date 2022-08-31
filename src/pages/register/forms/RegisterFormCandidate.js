@@ -55,7 +55,8 @@ const RegisterFormCandidate = () => {
         ]}
       >
         <InputNumber
-          defaultValue={40}
+          min={40}
+          max={120}
           style={{ width: "100%" }}
           className="register-form-input"
           placeholder="Wiek"
